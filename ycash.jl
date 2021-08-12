@@ -6,7 +6,7 @@ import JSON
 using JSON
 
 pwd()
-cd("ycash-441/src")
+cd("ycash-441/src") #Enter the path to your ycash node here
 function ycashcli(command)
 	JSON.parse(read(`./ycash-cli $command`, String))
 end
