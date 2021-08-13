@@ -4,7 +4,7 @@ Once Julia is running:
 
 julia>include("ycash.jl") for ycash
 
-julia>include("zcash.jl") for zcash
+julia>include("zcash.jl") for zcash (Zcash is a separate branch from main)
 
 Once the script is running, commands are executed in the following format:
 
