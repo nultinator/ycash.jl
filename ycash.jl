@@ -2,6 +2,7 @@
 
 import Pkg
 Pkg.add("JSON")
+Pkg.add("OrderedCollections")
 import JSON
 using JSON
 
@@ -25,7 +26,7 @@ function z_sendtofrom()
            amount = readline()
            println("Memo?")
            memo = readline()
-           dict = Dict("address" => "$to", "amount" => amount, "memo" => "$memo")
+           dict = OrderedDict("address" => "$to", "amount" => amount, "memo" => "$memo")
            params = JSON.json(dict)
            run(`./ycash-cli z_sendmany "$from" 'params'`)
 end
