@@ -5,6 +5,7 @@ Pkg.add("JSON")
 Pkg.add("OrderedCollections")
 import JSON
 using JSON
+using OrderedCollections
 
 pwd()
 println("Enter the path to ycash/zcash-cli")
