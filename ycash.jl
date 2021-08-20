@@ -17,6 +17,17 @@ end
 addresses = JSON.parse(read(`./ycash-cli z_listaddresses`, String))
 notes = JSON.parse(read(`./ycash-cli z_listunspent`, String))
 memos = String(hex2bytes(notes[1]["memo"])) #FIX THE KEY VARIABLE IN THIS LINE!!!!!
+
+function checky()
+	yaddr_regex = r"^ys1\w{75}"
+
+	from = readline()
+           
+	while match(yaddr_regex, from) == nothing
+  	println("That yaddr looks invalid. Please enter a valid address")
+  	from = readline()
+end
+	
 #This send function doesn't work correctly yet, but it's close (JSON error)
 function z_sendtofrom()
            println("Send from?")
@@ -48,12 +59,4 @@ function z_send()
            run(`./ycash-cli z_sendmany "$from" $sendparams`)
        end
 
-function checky()
-	yaddr_regex = r"^ys1\w{75}"
 
-	from = readline()
-           
-	while match(yaddr_regex, from) == nothing
-  	println("That yaddr looks invalid. Please enter a valid address")
-  	from = readline()
-end
