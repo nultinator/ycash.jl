@@ -28,35 +28,20 @@ function checky()
   	from = readline()
 end
 	
-#This send function doesn't work correctly yet, but it's close (JSON error)
-function z_sendtofrom()
-           println("Send from?")
-           from = readline()
-           println("Send to?")
-           to = readline()
-           println("How much?")
-           amount = readline()
-           println("Memo?")
-           memo = readline()
-           dict = OrderedDict("address" => "$to", "amount" => amount, "memo" => "$memo")
-           params = JSON.json(dict)
-           run(`./ycash-cli z_sendmany "$from" 'params'`)
-end
 
-#This alternative might replace the above send function, also not working yet but very close, I believe it's a syntax issue
+#Sending works now!!!!!, Still need function to convert memo to hexadecimal format though
 function z_send()
            println("Send from?")
            from = readline()
-		checky(from)
            println("Send to?")
            to = readline()
            println("How much?")
            amount = readline()
            println("Memo?")
            memo = readline()
-           params = OrderedDict{String, Any}([("to", to), ("amount", amount), ("memo", memo)])
-           sendparams = JSON.print(params)
-           run(`./ycash-cli z_sendmany "$from" $sendparams`)
+           params = OrderedDict{String, Any}([("address", to), ("amount", amount)])
+           sendparams = JSON.json(params)
+           run(`./ycash-cli z_sendmany "$from" '['$sendparams']'`)
        end
 
 
