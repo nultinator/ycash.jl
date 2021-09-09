@@ -26,7 +26,8 @@ function checky()
 	while match(yaddr_regex, from) == nothing
   	println("That yaddr looks invalid. Please enter a valid address")
   	from = readline()
-end
+		end
+	end
 	
 
 #Sending works now!!!!!, Still need function to convert memo to hexadecimal format though
