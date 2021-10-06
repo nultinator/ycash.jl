@@ -14,9 +14,12 @@ cd(location)
 function ycashcli(command)
 	JSON.parse(read(`./ycash-cli $command`, String))
 end
-addresses = JSON.parse(read(`./ycash-cli z_listaddresses`, String))
-notes = JSON.parse(read(`./ycash-cli z_listunspent`, String))
-memos = String(hex2bytes(notes[1]["memo"])) #FIX THE KEY VARIABLE IN THIS LINE!!!!!
+
+function decodememo(note)
+	notes = ycashcli("z_listunspent")
+	memo = String(hex2bytes(notes[note]["memo"]))
+	println(memo)
+end
 
 function checky()
 	yaddr_regex = r"^ys1\w{75}"
