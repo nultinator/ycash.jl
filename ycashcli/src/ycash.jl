@@ -1,4 +1,4 @@
-module ycashcli
+module ycash
 
 import Pkg
 using JSON
