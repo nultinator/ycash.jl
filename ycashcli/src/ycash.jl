@@ -1,6 +1,7 @@
-module ycash
 
 import Pkg
+Pkg.add("JSON")
+Pkg.add("OrderedCollections")
 using JSON
 using OrderedCollections
 
@@ -57,6 +58,4 @@ function z_send()
            sendparams = JSON.json(params)
            run(`./ycash-cli z_sendmany "$from" '['$sendparams']'`)
        end
-	
 
-end
