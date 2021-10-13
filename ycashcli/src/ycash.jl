@@ -1,7 +1,14 @@
 
 import Pkg
-Pkg.add("JSON")
-Pkg.add("OrderedCollections")
+function build_deps()
+	Pkg.add("JSON")
+	Pkg.add("OrderedCollections")
+end
+
+println("Would you like to build dependancies?")
+	Answer = readline()
+	if Answer == "yes"
+	build_deps()
 using JSON
 using OrderedCollections
 
