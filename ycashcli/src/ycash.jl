@@ -6,9 +6,11 @@ function build_deps()
 end
 
 println("Would you like to build dependancies?")
+println("reply: yes or no")
 	Answer = readline()
 	if Answer == "yes"
-	build_deps()
+		build_deps()
+	end
 using JSON
 using OrderedCollections
 
@@ -34,8 +36,12 @@ function checky()
 	while match(yaddr_regex, from) == nothing
   		println("That yaddr looks invalid. Please enter a valid address")
   		from = readline()
-		end
 	end
+end
+	
+function getbalance()
+        DataFrame(ycashcli("z_gettotalbalance"))
+end
 	
 function decodememo(note)
 		notes = ycashcli("z_listunpent")
