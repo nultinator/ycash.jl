@@ -28,6 +28,12 @@ function checky()
   		from = readline()
 		end
 	end
+	
+function decodememo(note)
+		notes = ycashcli("z_listunpent")
+		memo = String(hex2bytes(notes[note]["memo"]))
+		println(memo)
+	end
 
 function new_s_addr()
         run(`./ycash-cli getnewaddress`)
