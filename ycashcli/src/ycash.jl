@@ -43,10 +43,8 @@ function getbalance()
         DataFrame(ycashcli("z_gettotalbalance"))
 end
 	
-function decodememo(note)
-		notes = ycashcli("z_listunpent")
-		memo = String(hex2bytes(notes[note]["memo"]))
-		println(memo)
+function decodememo(memo)
+		String(hex2bytes(memo)
 	end
 
 function new_s_addr()
