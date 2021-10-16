@@ -44,7 +44,7 @@ function getbalance()
 end
 	
 function decodememo(memo)
-		String(hex2bytes(memo)
+		String(hex2bytes(memo))
 	end
 
 function new_s_addr()
