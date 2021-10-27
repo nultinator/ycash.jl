@@ -5,6 +5,17 @@ function build_deps()
 	Pkg.add("OrderedCollections")
 end
 
+function build_ycashd()
+	run(`git clone https://github.com/ycashfoundation/ycash.git`)
+	cd("ycash")
+	run(`./zcutil/build.sh -j4`)
+end
+println("Would you to build ycashd?")
+	reply = readline()
+	if reply == "yes"
+		build_ycashd()
+	end
+
 println("Would you like to build dependancies?")
 println("reply: yes or no")
 	Answer = readline()
