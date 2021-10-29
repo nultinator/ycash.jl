@@ -3,6 +3,7 @@ import Pkg
 function build_deps()
 	Pkg.add("JSON")
 	Pkg.add("OrderedCollections")
+	Pkg.add("DataFrames")
 end
 
 function build_ycashd()
@@ -24,6 +25,7 @@ println("reply: yes or no")
 	end
 using JSON
 using OrderedCollections
+using DataFrames
 
 pwd()
 cd()
