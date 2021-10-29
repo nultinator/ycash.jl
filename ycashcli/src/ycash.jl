@@ -10,7 +10,7 @@ function build_ycashd()
 	cd("ycash")
 	run(`./zcutil/build.sh -j4`)
 end
-println("Would you to build ycashd?")
+println("Would you like to build ycashd?")
 	reply = readline()
 	if reply == "yes"
 		build_ycashd()
