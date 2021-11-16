@@ -37,7 +37,7 @@ function ycashcli(command)
     cd(location)
 	JSON.parse(read(`./ycash-cli $command`, String))
 end
-addresses = JSON.parse(read(`./ycash-cli z_listaddresses`, String))
+y_addresses = JSON.parse(read(`./ycash-cli z_listaddresses`, String))
 notes = JSON.parse(read(`./ycash-cli z_listunspent`, String))
 memos = String(hex2bytes(notes[1]["memo"])) #FIX THE KEY VARIABLE IN THIS LINE!!!!!
 
@@ -52,8 +52,13 @@ function checky()
 	end
 end
 	
-function getbalance()
-        DataFrame(ycashcli("z_gettotalbalance"))
+function shieldedbalances()
+       for address in y_addresses
+           if occursin(r"(ys1)", address) == true
+           balance = read(`./ycash-cli z_getbalance "$address"`, String)
+           println("$address = $balance")
+           end
+       end
 end
 	
 function decodememo(memo)
