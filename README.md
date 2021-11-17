@@ -1,12 +1,17 @@
 # ycash.jl
-To use this script, you must have Julia, a Ycash Full Node, and ycash-cli installed on your machine.
+To use this script, you must have Julia, a Ycash/Zcash Full Node, and ycash-cli installed on your machine.
+Julia can be downloaded from here: https://julialang.org/downloads/
+
+
 In bash run the following commands:
 
   cd ycashcli/src
   
   julia
   
-  include("ycash.jl")
+  include("ycash.jl") or 
+  
+  include("zcash.jl")
   
 Future iterations of this will use a project.toml file, but at the moment, all dependencies install and/or update at the beginning of the script
     -Pkg.add("blahblahblah")
