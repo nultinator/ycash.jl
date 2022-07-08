@@ -1,43 +1,28 @@
 
 import Pkg
-function build_deps()
-	Pkg.add("JSON")
-	Pkg.add("OrderedCollections")
-	Pkg.add("DataFrames")
-end
+Pkg.add("DataFrames")
+Pkg.add("JSON")
+Pkg.add("OrderedCollections")
 
-function build_ycashd()
-	run(`git clone https://github.com/ycashfoundation/ycash.git`)
-	cd("ycash")
-	run(`./zcutil/build.sh -j4`)
-end
-println("Would you like to build ycashd?")
-	reply = readline()
-	if reply == "yes"
-		build_ycashd()
-	end
-
-println("Would you like to build dependancies?")
-println("reply: yes or no")
-	Answer = readline()
-	if Answer == "yes"
-		build_deps()
-	end
 using JSON
 using OrderedCollections
 using DataFrames
 
-pwd()
+f = open("path.txt", "r")
+path = readline(f)
 cd()
-println("Enter the path to ycash/zcash-cli")
-location = readline()
-cd(location)
+cd(path)
+println(path)
+
 function ycashcli(command)
-    cd()
-    cd(location)
 	JSON.parse(read(`./ycash-cli $command`, String))
 end
-y_addresses = JSON.parse(read(`./ycash-cli z_listaddresses`, String))
+
+function ycashcli(command, arg1)
+	JSON.parse(read(`./ycash-cli $command $arg1`, String))
+end	
+
+addresses = JSON.parse(read(`./ycash-cli z_listaddresses`, String))
 notes = JSON.parse(read(`./ycash-cli z_listunspent`, String))
 memos = String(hex2bytes(notes[1]["memo"])) #FIX THE KEY VARIABLE IN THIS LINE!!!!!
 
@@ -51,27 +36,6 @@ function checky()
   		from = readline()
 	end
 end
-	
-function shieldedbalances()
-       for address in y_addresses
-           if occursin(r"(ys1)", address) == true
-           balance = read(`./ycash-cli z_getbalance "$address"`, String)
-           println("$address = $balance")
-           end
-       end
-end
-	
-function decodememo(memo)
-		String(hex2bytes(memo))
-	end
-
-function new_s_addr()
-        run(`./ycash-cli getnewaddress`)
-end
-
-function show_transparent()
-        ycashcli("listreceivedbyaddress")
-end	
 
 #Sending works now!!!!!, Still need function to convert memo to hexadecimal format though
 function z_send()
@@ -86,5 +50,7 @@ function z_send()
            params = OrderedDict{String, Any}([("address", to), ("amount", amount)])
            sendparams = JSON.json(params)
            run(`./ycash-cli z_sendmany "$from" '['$sendparams']'`)
-       end
+end
+
+include("tests.jl")
 
