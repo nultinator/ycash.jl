@@ -15,4 +15,7 @@ In bash run the following commands:
   
 To run commands use the following syntax:
 
-ycashcli("getblock", 0)
+![Screenshot from 2022-07-13 18-00-30](https://user-images.githubusercontent.com/72562693/178844201-d10a9ca7-df25-454d-8d72-ba0a0b6e859f.png)
+
+
+PRs Welcome
