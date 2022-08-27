@@ -65,8 +65,6 @@ function safe_send(to_address::String, amount::Float64, fee::Float64)
     return sent_data
 end
 
-println(safe_send("s1Mhqq43NMS5aZMR8Pc26tAP6pzozT2jyJ3", 5.0, 0.001))
-
 
 
 
