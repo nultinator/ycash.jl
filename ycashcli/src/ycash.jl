@@ -30,7 +30,7 @@ function ycashcli(command::String, arg1)
 end
 
 function ycashcli(command::String, arg1, arg2)
-	JSON.parse(read(`./ycash-cli $command $arg1`, String))
+	JSON.parse(read(`./ycash-cli $command $arg1 $arg2`, String))
 end
 
 
