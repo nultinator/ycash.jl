@@ -5,22 +5,54 @@ You must have Julia, a Ycash/Zcash Full Node, and ycash-cli installed on your ma
 Julia can be downloaded from here: https://julialang.org/downloads/.
 
 
-In bash run the following commands:
+<h2>Getting Started</h2>
 
+```shell
   cd ycashcli/src
+  ./julia
+```
+Once inside a live REPL
   
-  julia
-  
+```julia
   include("ycash.jl")
+```
   
-To run commands use the following syntax:
+<h2>Commands and Usage</h2>
+<h4>ycashcli()</h4>
+<p>Takes a command(string) and up to two args(any) as input, then returns the information sent back from the node. The following snippets are not an exhaustive list but just a few examples</p>
 
-![Screenshot from 2022-07-13 18-00-30](https://user-images.githubusercontent.com/72562693/178844201-d10a9ca7-df25-454d-8d72-ba0a0b6e859f.png)
+```julia
+ycashcli("getblockchaininfo")
+```
+```julia
+ycashcli("getpeerinfo")
+```
 
-Shielded send:
-![Screenshot from 2022-08-23 16-39-11](https://user-images.githubusercontent.com/72562693/186261200-ab71b02a-e864-49e7-af8a-38edbe4adfe3.png)
-returns an output like this
-![Screenshot from 2022-08-23 16-40-34](https://user-images.githubusercontent.com/72562693/186261330-a75d5562-a71a-4660-9890-dc9baa282bc8.png)
+
+```julia
+ycashcli("getblock", 0")
+```
+
+<h4>shielded_send()</h4>
+<p>Takes your y_address(string), to_address(string), amount(float64) and fee(float64) as input. A shielded transaction is then created and sent using the input data.</p>
+
+```julia
+shielded_send("ys1youryaddressgoeshereblahblahblah", "ys1youaresendingtothisaddressblahblah", 21.0, 0.01)
+```
+
+<h4>getnewaddress()</h4>
+<p>Returns a new transaparent address</p>
+
+```julia
+getnewaddress()
+```
+
+<h4>safe_send()</h4>
+<p>Takes a receiving address(string), amount(float64), and fee(float64) as input, then generates a new change address to help protect some of the privacy of the sender. A new the new transaction is then created and the change is sent to newly generated address. This is <b><i>NOT</i></b> a replacement for shielded transactions.</p>
+
+```julia
+safe_send("s1youaresendingtothisaddress", 21.0, 0.01)
+```
 
 
 PRs Welcome
