@@ -9,8 +9,12 @@ using OrderedCollections
 using DataFrames
 
 include("utxo.jl")
-include("helpers.jl")
 
+dir = readdir()
+println(isfile("path.txt"))
+if isfile("path.txt") == false
+    include("setup.jl")
+end
 f = open("path.txt", "r")
 path = readline(f)
 cd()
