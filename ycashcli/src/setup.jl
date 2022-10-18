@@ -8,8 +8,9 @@ function set_path()
 	println("Please enter the path to ycash-cli: ")
 	path = readline()
 	touch("path.txt")
-	f = open("path.txt", "w")
-	write(f, path)
+	open("path.txt", "w") do io
+	write("path.txt", path)
+	end
 end
 
 println("Would you like to build ycashd? Y/n")
